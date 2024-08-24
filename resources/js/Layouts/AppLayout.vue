@@ -69,7 +69,10 @@ const logout = () => {
                             <div class="ms-3 relative">
                                 <!-- Teams Dropdown -->
                                 <Dropdown
-                                    v-if="$page.props.jetstream.hasTeamFeatures"
+                                    v-if="
+                                        $page.props.jetstream.hasTeamFeatures &&
+                                        $page.props.auth.user.current_team
+                                    "
                                     align="right"
                                     width="60"
                                 >
@@ -412,7 +415,10 @@ const logout = () => {
 
                             <!-- Team Management -->
                             <template
-                                v-if="$page.props.jetstream.hasTeamFeatures"
+                                v-if="
+                                    $page.props.jetstream.hasTeamFeatures &&
+                                    $page.props.auth.user.current_team
+                                "
                             >
                                 <div
                                     class="border-t border-gray-200 dark:border-gray-600"

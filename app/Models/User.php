@@ -10,13 +10,17 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use App\Traits\HasNoPersonalTeam;
 
 class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-    use HasTeams;
+    use HasNoPersonalTeam, HasTeams {
+        HasNoPersonalTeam::ownsTeam insteadof HasTeams;
+        HasNoPersonalTeam::isCurrentTeam insteadof HasTeams;
+    }
     use Notifiable;
     use TwoFactorAuthenticatable;
 
